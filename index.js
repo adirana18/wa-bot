@@ -11,12 +11,12 @@ client.on('qr', (qr) => {
 });
 
 const sendMenu = (chatId) => {
-    const menu = `Selamat datang di Laundry Kelompok B 😇\n\nKetik angka 1 : untuk 🧰 Daftar Harga\nKetik angka 2 : untuk Cek Cucian Saya`;
+    const menu = `Selamat datang di Laundry Kelompok B 😇\n\nKetik angka 1 : untuk  Daftar Harga\nKetik angka 2 : untuk Cek Cucian Saya`;
     client.sendMessage(chatId, menu);
 };
 
 client.on('ready', () => {
-    console.log('Client siap digunakan!');
+    console.log('Chatbot siap digunakan!');
 });
 
 const readOrders = () => {
@@ -55,7 +55,7 @@ client.on('message', message => {
         for (const product in prices) {
             priceList += `${product}: ${prices[product]}\n`;
         }
-        priceList += '*Ketik Menu untuk kembali*';
+        priceList += ' ______________________________\n *Ketik Menu untuk kembali*';
         message.reply(priceList);
     } else if (message.body.toLowerCase() === '2') {
         message.reply('Silakan masukkan ID pesanan Anda.');
@@ -66,14 +66,18 @@ client.on('message', message => {
         if (orders[orderId]) {
             // Memformat detail pesanan untuk output yang lebih rapi
             const detailsArray = orders[orderId].split(','); // Memisahkan detail berdasarkan koma
-            let orderDetails = `Detail pesanan untuk ID ${orderId}:\n`;
-            
-            // Menambahkan setiap detail dengan format rapi
-            detailsArray.forEach(detail => {
-                orderDetails += `- ${detail.trim()}\n`; // Menggunakan tanda '-' untuk format yang lebih jelas
-            });
-            
-            message.reply(orderDetails);
+let orderDetails = `Berikut Detail Pesanan Anda ID ${orderId}\n`;
+orderDetails += '______________________________\n ';
+
+// Menambahkan setiap detail dengan format rapi
+detailsArray.forEach(detail => {
+    orderDetails += `${detail.trim()}\n`; // Tanpa tanda '-' di depan
+});
+
+orderDetails += '______________________________\n Thank you!';
+
+message.reply(orderDetails);
+
         
         
         } else {
