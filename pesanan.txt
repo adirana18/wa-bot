@@ -1,4 +1,0 @@
-123: Nama: John Doe, Waktu Masuk: 2024-10-20 10:00, Estimasi Selesai: 2024-10-25 11:00, Layanan: Cuci Kering 5 Kg, Status: Belum Selesai
-124: Nama: Jane Smith, Waktu Masuk: 2024-10-21 11:30, Estimasi Selesai: 2024-10-26, Layanan: Cuci Setrika 3 Kg, Status: Belum Selesai
-125: Nama: Alice Johnson, Waktu Masuk: 2024-10-22 09:15, Estimasi Selesai: 2024-10-24, Layanan: Cuci Ekspres 2 Kg, Status: Belum Selesai
-Nama: Bob Brown, No Hp: 6283816256254@c.us,Waktu Masuk: 2024-10-23 14:45, Estimasi Selesai: 2024-10-27, Layanan: Cuci Bantal, Status: Belum Selesai, status wa:N
