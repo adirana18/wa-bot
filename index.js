@@ -16,7 +16,7 @@ db.connect((err) => {
         console.error('Koneksi ke database gagal:', err);
         return;
     }
-    console.log('Connected to database!');
+    console.log('😎😎😎😎😎');
 });
 
 // Inisialisasi client WhatsApp
@@ -37,7 +37,7 @@ const sendMenu = (chatId) => {
 
 // Menjalankan saat bot sudah siap
 client.on('ready', () => {
-    console.log('Chatbot siap digunakan!');
+    console.log('=======================\n=		      =\n=       ChatBot       =\n=   Siap Digunakan    =\n=		      =\n=     Kelompok B      =\n=======================');
 });
 
 // Fungsi untuk mengambil data pesanan dari database berdasarkan ID
