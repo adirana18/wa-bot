@@ -134,7 +134,8 @@ client.on('message', async message => {
 
             // Menghitung estimasi waktu selesai (3 hari ke depan)
             const estimasiSelesai = new Date(currentDate.getTime() + 3 * 24 * 60 * 60 * 1000); // 3 hari ke depan
-        
+            const formattedEstimasiSelesai = estimasiSelesai.toISOString().slice(0, 19).replace('T', ' '); // Format ke 'YYYY-MM-DD HH:mm:ss'
+
             const status = 'belum selesai';
 
             // Dapatkan nomor pengirim dari message.from
