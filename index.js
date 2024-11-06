@@ -7,7 +7,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'cp_ut'
+    database: 'moni'
 });
 
 // Koneksi ke database
@@ -16,7 +16,7 @@ db.connect((err) => {
         console.error('Koneksi ke database gagal:', err);
         return;
     }
-    console.log('😎😎😎😎😎');
+    console.log('Database connect');
 });
 
 // Inisialisasi client WhatsApp
@@ -37,7 +37,7 @@ const sendMenu = (chatId) => {
 
 // Menjalankan saat bot sudah siap
 client.on('ready', () => {
-    console.log('=======================\n=		      =\n=       ChatBot       =\n=   Siap Digunakan    =\n=		      =\n=     Kelompok B      =\n=======================');
+    console.log('Bot Ready');
 });
 
 // Fungsi untuk mengambil data pesanan dari database berdasarkan ID
@@ -127,19 +127,22 @@ client.on('message', async message => {
             }
 
             const totalHarga = jumlah * hargaLayanan; // Hitung total harga
-            const status = 'belum selesai';
+
+            // Mendapatkan waktu masuk (tanggal sekarang)
+            const currentDate = new Date();
+            const waktuMasuk = currentDate.toISOString().slice(0, 19).replace('T', ' '); // Format ke 'YYYY-MM-DD HH:mm:ss'
 
             // Menghitung estimasi waktu selesai (3 hari ke depan)
-            const currentDate = new Date();
             const estimasiSelesai = new Date(currentDate.getTime() + 3 * 24 * 60 * 60 * 1000); // 3 hari ke depan
-            const formattedEstimasiSelesai = estimasiSelesai.toISOString().slice(0, 19).replace('T', ' '); // Format ke 'YYYY-MM-DD HH:mm:ss'
+        
+            const status = 'belum selesai';
 
             // Dapatkan nomor pengirim dari message.from
             const nomorHP = message.from; // Nomor pengirim (format: "1234567890@s.whatsapp.net")
 
             // Simpan ke database
-            db.query('INSERT INTO pesanan (nama, nomor_hp, status, total_harga, estimasi_selesai, pakaian, sprei, handuk, selimut, karpet_kecil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
-                [nama, nomorHP, status, totalHarga, formattedEstimasiSelesai, jenisLayanan === 'pakaian' ? jumlah : 0, jenisLayanan === 'sprei' ? jumlah : 0, jenisLayanan === 'handuk' ? jumlah : 0, jenisLayanan === 'selimut' ? jumlah : 0, jenisLayanan === 'karpet kecil' ? jumlah : 0],
+            db.query('INSERT INTO pesanan (nama, nomor_hp, status, total_harga, estimasi_selesai, waktu_masuk, pakaian, sprei, handuk, selimut, karpet_kecil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+                [nama, nomorHP, status, totalHarga, formattedEstimasiSelesai, waktuMasuk, jenisLayanan === 'pakaian' ? jumlah : 0, jenisLayanan === 'sprei' ? jumlah : 0, jenisLayanan === 'handuk' ? jumlah : 0, jenisLayanan === 'selimut' ? jumlah : 0, jenisLayanan === 'karpet kecil' ? jumlah : 0],
                 (err, result) => {
                     if (err) {
                         console.error('Error saat menyimpan ke database:', err);
