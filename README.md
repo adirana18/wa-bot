@@ -4,8 +4,6 @@ Prerequisites
 Sebelum menginstal, pastikan Anda telah memenuhi syarat berikut:
 
 - [Node.js](https://nodejs.org/) (versi 14 atau lebih baru)
-- [npm](https://www.npmjs.com/) (paket manajer untuk Node.js)
-- [WhatsApp](https://www.whatsapp.com/) yang terinstal di perangkat Anda
 
 Instalasi
 
