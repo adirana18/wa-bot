@@ -1,23 +1,9 @@
+// index.js atau file utama
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
-const mysql = require('mysql');
 
-// Konfigurasi koneksi ke database MySQL
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'moni'
-});
-
-// Koneksi ke database
-db.connect((err) => {
-    if (err) {
-        console.error('Koneksi ke database gagal:', err);
-        return;
-    }
-    console.log('Database connect');
-});
+// Import koneksi database dari db.js
+const db = require('./db'); // pastikan path-nya sesuai dengan struktur folder proyek kamu
 
 // Inisialisasi client WhatsApp
 const client = new Client({
